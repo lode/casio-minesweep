@@ -1,0 +1,81 @@
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:796
+File Name:MS SCRT
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+A=68\=>\GotoA
+A=58\=>\GotoB
+\Lbl A
+68\->Q
+\Green \Text 3,68,"             "
+\Green \Text 3,81,"PAUZE!"
+\Stop
+\Lbl B
+\Green \Text 3,68,"             "
+\Green \Text 3,68,"X\slashY VRAGEN:"
+\Lbl C
+0\->A:0\->Z
+\Lbl D
+Z+1\->Z
+\Do
+\Getkey\->A
+\LpWhile A\<>72\ And A\<>62\ And A\<>52\ And A\<>73\ And A\<>63\ And A\<>53\ And A\<>74\ And A\<>64\ And A\<>54\ And A\<>47
+A=47\=>\GotoZ
+A=72\=>1\->A
+A=62\=>2\->A
+A=52\=>3\->A
+A=73\=>4\->A
+A=63\=>5\->A
+A=53\=>6\->A
+A=74\=>7\->A
+A=64\=>8\->A
+A=54\=>9\->A
+\If Z=1\ And A>W
+\Then \Text 11,113," ":\GotoC
+\IfEnd
+\If Z=2\ And A>V
+\Then \Text 17,113," ":\GotoC
+\IfEnd
+Z=1\=>A\->C
+Z=1\=>\Text 11,113,C
+Z=2\=>\GotoE
+\GotoD
+\Lbl E
+A\->B
+\Text 17,113,B
+\Mat M[B,C]<\(-)1\=>\Text 3,113,\Mat M[B,C]+10
+\Mat M[B,C]=\(-)1\=>\Orange \Text 3,113,"*"
+\If \Mat M[B,C]>0\ And \Mat M[B,C]<9
+\Then \Text 3,113,\Mat M[B,C]
+\IfEnd
+\Mat M[B,C]=9\=>\Orange \Text 3,113,"*"
+\If \Mat M[B,C]>9\ And \Mat M[B,C]<19
+\Then \Text 3,113,\Mat M[B,C]-10
+\IfEnd
+\Mat M[B,C]=19\=>\Orange \Text 3,113,"*"
+\Do
+\Getkey\->A
+\LpWhile A\<>31\ And A\<>47
+A=47\=>\GotoZ
+\Text 11,113," "
+\Text 17,113," "
+\Text 3,113," "
+\Orange \Text 3,113," "
+\GotoC
+\Lbl Z
+\Text 11,113," "
+\Text 17,113," "
+\Text 3,113," "
+\Orange \Text 3,113," "
+58\->A:0\->Q
+\Green \Text 3,68,"MIJNENVEGER!"
+
+%End

@@ -1,0 +1,30 @@
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:100
+File Name:MS CHECK
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+A=79\=>\GotoA
+A=59\=>\GotoA
+0\->E
+C<1\=>5\->E
+C>W\=>5\->E
+D<1\=>5\->E
+D>V\=>5\->E
+\GotoZ
+\Lbl A
+0\->F
+D<1\=>5\->F
+D>W\=>5\->F
+E<1\=>5\->F
+E>V\=>5\->F
+\Lbl Z
+
+%End

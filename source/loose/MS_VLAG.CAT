@@ -1,0 +1,47 @@
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:319
+File Name:MS VLAG
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+\Mat M[B,C]<0\=>\GotoZ
+\Mat M[B,C]>9\=>\GotoA
+\Text D,E," "
+\Mat M[B,C]+10\->\Mat M[B,C]
+S-1\->S
+S<0\=>\Goto0
+S>9\=>\Goto0
+\Text 57,98," "
+\Lbl 0
+\Text 57,94,S
+\Mat M[B,C]=19\=>T-1\->T
+\Green \Text D,E,"P"
+\Green \PxlOn D+1,E+1
+\GotoY
+\Lbl A
+\Green \Text D,E," "
+\Mat M[B,C]-10\->\Mat M[B,C]
+S+1\->S
+S<0\=>\Goto1
+S>9\=>\Goto1
+\Text 57,98," "
+\Lbl 1
+\Text 57,94,S
+\Mat M[B,C]=9\=>T+1\->T
+\PxlOn D+2,E+1
+\GotoY
+\Lbl Y
+S=0\=>8400\->Q
+T=0\=>Q+26\->Q
+Q\<>8426\=>0\->Q
+Q=8426\=>\Prog "MS END"
+\Lbl Z
+
+%End

@@ -1,0 +1,75 @@
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:931
+File Name:MS END
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+\Text 11,60,"               "
+\Text 17,60,"               "
+\Orange \Text 23,60,"   "
+\Text 23,72,"          "
+\Orange \Text 31,60,"  "
+\Text 31,72,"           "
+\Orange \Text 37,60,"  "
+\Text 37,72,"              "
+\Text 37,123," "
+\Orange \Text 43,60,"  "
+\Text 43,72,"             "
+\Text 51,60,"        "
+\Text 51,94,"   "
+\Text 57,60,"        "
+\Text 57,94,"  "
+\Orange \Text 57,111,"    "
+K=86\=>\GotoZ
+Q=6248\=>\GotoA
+\Green \Text 11,60,"GEFELICITEERD!"
+\Text 19,60,"JE HEBT IN"
+\Text 25,60,P
+72\->A
+P<10\=>68\->A
+P=1\=>\Text 25,A,"BEURT"
+P\<>1\=>\Text 25,A,"BEURTEN"
+\Text 31,60,"GEWONNEN!"
+0\->Q
+\ClrText
+\Green \Text 57,65,"(C) LODEC \(-) 2003"
+\Stop
+\Lbl A
+\Green \Text 11,60,"JAMMER!"
+\Green \Text 19,60,"JE HEBT"
+\Green \Text 25,60," VERLOREN!"
+\Orange \Text 33,60,"*"
+\Text 33,64,":"
+\Text 33,68,"MIJN"
+\Text 33,111,"[  ]"
+M<10\=>\Text 33,114,"0"
+M<10\=>\Text 33,118,M
+M>9\=>\Text 33,114,M
+\Green \Text 39,60,"*"
+\Text 39,64,":"
+\Text 39,68,"GOEDE VLAG"
+\Text 39,111,"[  ]"
+N<10\=>\Text 39,114,"0"
+N<10\=>\Text 39,118,N
+N>9\=>\Text 39,114,N
+\Orange \Text 45,60,"P"
+\Text 45,64,":"
+\Text 45,68,"FOUTE VLAG"
+\Text 45,111,"[  ]
+O<10\=>\Text 45,114,"0"
+O<10\=>\Text 45,118,O
+O>9\=>\Text 45,114,O
+0\->Q
+\ClrText
+\Green \Text 57,65,"(C) LODEC \(-) 2003"
+\Stop
+\Lbl Z
+
+%End

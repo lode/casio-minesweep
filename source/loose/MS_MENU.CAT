@@ -1,0 +1,165 @@
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:1779
+File Name:MS MENU
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+\Cls
+\Green \F-Line 2,1,126,1
+\Green \F-Line 127,2,127,62
+\Green \F-Line 126,63,2,63
+\Green \F-Line 1,62,1,2
+\Green \F-Line 5,4,57,4
+\Green \F-Line 58,5,58,59
+\Green \F-Line 57,60,5,60
+\Green \F-Line 4,59,4,5
+\Green \Text 3,68,"MIJNENVEGER!"
+\Green \F-Line 60,9,125,9
+\Text 11,60,"HOOFDMENU:"
+\Text 19,60,"VELD GROOTTE:"
+\Orange \Text 19,60,"V"
+\Text 25,60,"2\(-)9 BIJ 2\(-)9:"
+\Text 25,108,V
+\Text 25,112,"\(-)"
+\Text 25,116,W
+\Text 31,60,"MIJNEN AANTAL:"
+\Orange \Text 31,60,"M"
+\Text 37,60,"01\(-)"
+(V-1)*(W-1)\->U
+U<10\=>\Text 37,72,"0"
+U<10\=>\Text 37,76,U
+U>9\=>\Text 37,72,U
+\Text 37,80,":"
+\Text 37,84,\r
+\Text 43,60,"RINGEN AANTAL:"
+\Orange \Text 43,60,"R"
+\Text 49,60,"0,1,ALLES:"
+\theta=0\=>\Text 49,100,\theta
+\theta=1\=>\Text 49,100,\theta
+\theta=2\=>\Text 49,100,"ALLES"
+\Text 57,60,"SPELEN"
+\Orange \Text 57,60,"S"
+\Orange \Text 57,111,"EXIT"
+150\->F
+\Lbl A
+\Do
+F-1\->F
+F=50\=>\Text 57,85,"\slash5"
+F=40\=>\Text 57,85,"\slash4"
+F=30\=>\Text 57,85,"\slash3"
+F=20\=>\Text 57,85,"\slash2"
+F=10\=>\Text 57,85,"\slash1"
+\Getkey\->A
+\LpWhile A\<>62\ And A\<>74\ And A\<>53\ And A\<>43\ And A\<>47\ And F\<>0
+A=47\=>\GotoX
+A=43\=>\GotoZ
+F=0\=>\Text 57,89,"0"
+F=0\=>\GotoZ
+A=62\=>\GotoB
+A=74\=>\GotoD
+A=53\=>\GotoH
+\Lbl B
+\Orange \Text 25,60,"2 9     2 9"
+0\->Z
+\Lbl C
+Z+1\->Z
+Z=1\=>\Text 25,108,"."
+Z=2\=>\Text 25,116,"."
+\Do
+\Getkey\->A
+\LpWhile A\<>62\ And A\<>52\ And A\<>73\ And A\<>63\ And A\<>53\ And A\<>74\ And A\<>64\ And A\<>54
+A=62\=>2\->A
+A=52\=>3\->A
+A=73\=>4\->A
+A=63\=>5\->A
+A=53\=>6\->A
+A=74\=>7\->A
+A=64\=>8\->A
+A=54\=>9\->A
+Z=1\=>A\->V
+Z=2\=>A\->W
+\Text 25,108,V
+\Text 25,116,W
+Z=1\=>\GotoC
+(V-1)*(W-1)\->U
+U<10\=>\Text 37,72,"0"
+U<10\=>\Text 37,76,U
+U>9\=>\Text 37,72,U
+\Text 37,80,":"
+U<\r\=>U\->\r
+\Text 37,84,\r
+\r\->T
+\r<10\=>\Text 37,88," "
+\Orange \Text 25,60,"           "
+121\->F
+\GotoA
+\Lbl D
+\Orange \Text 37,60,"01"
+U<10\=>\Orange \Text 37,72,"0"
+U<10\=>\Orange \Text 37,76,U
+U>9\=>\Orange \Text 37,72,U
+0\->Z
+\Text 37,84,"  "
+\Lbl E
+Z+1\->Z
+\Do
+\Getkey\->A
+\LpWhile A\<>71\ And A\<>72\ And A\<>62\ And A\<>52\ And A\<>73\ And A\<>63\ And A\<>53\ And A\<>74\ And A\<>64\ And A\<>54
+A=71\=>0\->A
+A=72\=>1\->A
+A=62\=>2\->A
+A=52\=>3\->A
+A=73\=>4\->A
+A=63\=>5\->A
+A=53\=>6\->A
+A=74\=>7\->A
+A=64\=>8\->A
+A=54\=>9\->A
+U<10\=>\Text 37,84,A
+U<10\=>A\->D
+U<10\=>\GotoF
+Z=1\=>\Text 37,84,A
+Z=2\=>\Text 37,88,A
+Z=1\=>A\->B
+Z=2\=>A\->C
+Z=1\=>\GotoE
+B*10\->D
+D+C\->D
+\Lbl F
+D<1\=>\GotoG
+D>U\=>\GotoG
+D\->\r
+\Orange \Text 37,60,"     "
+81\->F
+\GotoA
+\Lbl G
+0\->D:0\->\r
+\GotoD
+\Lbl H
+\Orange \Text 49,60,"0 1 A"
+\Do
+\Getkey\->A
+\LpWhile A\<>71\ And A\<>72\ And A\<>76
+A=71\=>0\->A
+A=72\=>1\->A
+A=76\=>2\->A
+A\->\theta
+\theta\<>0\=>\Text 49,100,"     "
+\theta=0\=>\Text 49,100,\theta
+\theta=1\=>\Text 49,100,\theta
+\theta=2\=>\Text 49,100,"ALLES"
+\Orange \Text 49,60,"     "
+21\->F
+\GotoA
+\Lbl X
+\Cls:\ClrText:\Stop
+\Lbl Z
+
+%End

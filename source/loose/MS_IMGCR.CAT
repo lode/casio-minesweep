@@ -1,0 +1,197 @@
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:2027
+File Name:MS IMGCR
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+\Green \Text 3,68,"MIJNENVEGER!"
+\Lbl A
+\PxlOff 1,127\Disp\ClrText
+\Locate 1,1,". \=> .  0 \=>    \Pi \=> X"
+\Locate 1,2,"+ \=> P[G]    - \=> P[O]"
+\Locate 1,3,"* \=> *[O]    / \=> *[G]"
+\Locate 1,4,"( \=> CLS L   ) \=> CLS R"
+\Locate 1,5,"8 \=> ... L   9 \=> NOR R"
+\Locate 1,6,"5 \=> P,G L   6 \=> WIN R"
+\Locate 1,7,"2 \=> *,O L   3 \=> LOS R"
+\Do
+\Getkey\->A
+\LpWhile A\<>61\ And A\<>71\ And A\<>51\ And A\<>42\ And A\<>32\ And A\<>43\ And A\<>33\ And A\<>55\ And A\<>45\ And A\<>64\ And A\<>54\ And A\<>63\ And A\<>53\ And A\<>62\ And A\<>52\ And A\<>47
+A=47\=>\GotoX
+A=55\=>\GotoC
+A=64\=>\GotoC
+A=63\=>\GotoC
+A=62\=>\GotoC
+A=45\=>\GotoG
+A=54\=>\GotoH
+A=53\=>\GotoI
+A=52\=>\GotoI
+\Lbl 0
+\ClrText
+0\->C
+"X (1\(-)9)"?\->C
+C<1\=>\Goto0
+C>9\=>\Goto0
+\Lbl 1
+0\->B
+"Y (1\(-)9)"?\->B
+B<1\=>\Goto1
+B>9\=>\Goto1
+C*6\->C:B*6\->B
+\Orange \Text B,C," ":\Text B,C," ":\Green \Text B,C," "
+A=71\=>\GotoA
+\If A=61
+\Then \PxlOn B+2,C+1:\GotoA
+\IfEnd
+A\<>51\=>\GotoB
+\Lbl 2
+\ClrText
+0\->D
+"X (1\(-)8)"?\->D
+D<1\=>\Goto2
+D>8\=>\Goto2
+\Text B,C,D
+\GotoA
+\Lbl B
+\If A=42
+\Then \Green \Text B,C,"P":\Green \PxlOn B+1,C+1:\GotoA
+\IfEnd
+\If A=32
+\Then \Orange \Text B,C,"P":\Green \PxlOn B+1,C+1:\GotoA
+\IfEnd
+\If A=43
+\Then \Orange \Text B,C,"*":\GotoA
+\IfEnd
+\Green \Text B,C,"*"
+\GotoA
+\Lbl C
+V+W\->U
+U=18\=>\Goto3
+\ClrText
+"WERKT ALLEEN BIJ 9\(-)9"\Disp\GotoA
+\Lbl 3
+A=64\=>\GotoD
+A=63\=>\GotoE
+A=62\=>\GotoF
+\For 6\->A \To 55 \Step 6
+\Orange \Text A,6,"             "
+\Text A,6,"             "
+\Green \Text A,6,"             "
+\Next 
+\GotoA
+\Lbl D
+\For 8\->B \To 56 \Step 6
+\For 7\->C \To 56 \Step 6
+\PxlOn B,C
+\Next 
+\Next 
+\GotoA
+\Lbl E
+\For 6\->B \To 56 \Step 6
+\For 6\->C \To 56 \Step 6
+\Green \Text B,C,"P"
+\Green \PxlOn B+1,C+1
+\Next 
+\Next 
+\GotoA
+\Lbl F
+\For 6\->B \To 56 \Step 6
+\For 6\->C \To 56 \Step 6
+\Orange \Text B,C,"*"
+\Next 
+\Next 
+\GotoA
+\Lbl G
+\For 11\->A \To 53 \Step 6
+\Orange \Text A,59,"                 "
+\Text A,59,"                 "
+\Green \Text A,59,"                 "
+\Next 
+\Orange \Text 57,59,"                 "
+\Text 57,59,"                 "
+\Green \Text 57,59,"                 "
+\GotoA
+\Lbl H
+\Lbl 4
+\ClrText
+0\->P
+"BEURTEN (0\(-)99)"?\->P
+P<0\=>\Goto4
+P>99\=>\Goto4
+\Lbl 5
+\ClrText
+0\->S
+"VLAGGEN (0\(-)99)"?\->S
+S<0\=>\Goto5
+S>99\=>\Goto5
+\Text 11,60,"X\(-)COORDINAAT:"
+\Orange \Text 11,60,"X"
+\Text 17,60,"Y\(-)COORDINAAT:"
+\Orange \Text 17,60,"Y"
+\Text 23,60,"DEL RESET X+Y"
+\Orange \Text 23,60,"DEL"
+\Orange \Text 31,60,"F1"
+\Text 31,72,"OPENLEGGEN"
+\Orange \Text 37,60,"F2"
+\Text 37,72,"VLAG PLAATSEN"
+\Orange \Text 43,60,"F3"
+\Text 43,72,"LINKS+RECHTS"
+\Text 51,60,"BEURTEN:"
+\Text 51,94,"  "
+\Text 51,94,P
+\Text 57,60,"VLAGGEN:"
+\Text 57,94,"  "
+\Text 57,94,S
+\Orange \Text 57,111,"EXIT"
+\GotoA
+\Lbl I
+\ClrText
+"DIT ZAL MAT M DELETEN1 \=> VERDER   2 \=> STOP"
+\Do
+\Getkey\->D
+\LpWhile D\<>72\ And D\<>62
+D=62\=>\GotoA
+A=52\=>\GotoJ
+\Lbl 6
+\ClrText
+0\->P
+"BEURTEN (0\(-)99)"?\->P
+P<0\=>\Goto6
+P>99\=>\Goto6
+8426\->Q
+\Prog "MS END"
+\GotoA
+\Lbl J
+\Lbl 7
+\ClrText
+0\->M
+"MIJNEN (0\(-)99)"?\->M
+M<0\=>\Goto7
+M>99\=>\Goto7
+\Lbl 8
+\ClrText
+0\->N
+"GOEDE VLAGGEN (0\(-)99)"?\->N
+N<0\=>\Goto8
+N>99\=>\Goto8
+\Lbl 9
+\ClrText
+0\->O
+"FOUTE VLAGGEN (0\(-)99)"?\->O
+O<0\=>\Goto9
+O>99\=>\Goto9
+6248\->Q
+\Prog "MS END"
+\GotoA
+\Lbl X
+68\->Q
+\ClrText
+
+%End

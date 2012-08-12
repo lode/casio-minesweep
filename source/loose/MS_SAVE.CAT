@@ -1,0 +1,20 @@
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:107
+File Name:MS SAVE
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+\Green \Text 3,68,"             "
+\Green \Text 3,74,"SAVING ..."
+\Mat M\->\Mat Q
+[[P,U,V,W][S,T,\r,\theta]]\->\Mat R
+\Green \Text 3,68,"MIJNENVEGER!"
+
+%End

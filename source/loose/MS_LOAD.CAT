@@ -1,0 +1,74 @@
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:1040
+File Name:MS LOAD
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+\Locate 1,1,"EERST MS OPSTARTEN"
+\Locate 1,2,"INSTEL: 9\(-)9, 1, 1"
+\Locate 1,3,"DAN LEVEL LADEN"
+\Locate 1,5,"LEVEL S\(-)1\(-)2"
+\Locate 1,6,"DRUK S\(-)1\(-)2"
+\Do
+\Getkey\->A
+\LpWhile A\<>43\ And A\<>72\ And A\<>62
+A=43\=>\Goto0
+A=72\=>\Goto1
+A=62\=>\Goto2
+\Lbl 0
+\Green \Text 3,72,"LOADING ..."
+\Mat Q\->\Mat M
+\Mat R[1,1]\->P
+\Mat R[1,2]\->U
+\Mat R[1,3]\->V
+\Mat R[1,4]\->W
+\Mat R[2,1]\->S
+\Mat R[2,2]\->T
+\Mat R[2,3]\->\r
+\Mat R[2,4]\->\theta
+\GotoZ
+\Lbl 1
+[[1,1,1,1,1,1,1,1,1][1,9,1,1,9,1,1,9,1][1,1,1,1,1,1,1,1,1][1,1,1,1,1,1,1,1,1][1,9,1,1,9,1,1,9,1][1,1,1,1,1,1,1,1,1][1,1,1,1,1,1,1,1,1][1,9,1,1,9,1,1,9,1][1,1,1,1,1,1,1,1,1]]\->\Mat M
+9\->S~T:9\->\r
+\GotoZ
+\Lbl 2
+[[9,9,9,9,9,9,9,9,9][9,9,9,9,9,9,9,9,9][9,9,9,9,9,9,9,9,9][9,9,9,9,9,9,9,9,9][9,9,9,9,8,9,9,9,9][9,9,9,9,9,9,9,9,9][9,9,9,9,9,9,9,9,9][9,9,9,9,9,9,9,9,9][9,9,9,9,9,9,9,9,9]]\->\Mat M
+80\->S~T:80\->\r
+\GotoZ
+\Lbl Z
+\ClrText
+\Cls
+\Green \F-Line 2,1,126,1
+\Green \F-Line 127,2,127,62
+\Green \F-Line 126,63,2,63
+\Green \F-Line 1,62,1,2
+\Green \F-Line 5,4,57,4
+\Green \F-Line 58,5,58,59
+\Green \F-Line 57,60,5,60
+\Green \F-Line 4,59,4,5
+\Green \F-Line 60,9,125,9
+\For 1\->B \To W
+\For 1\->V \To V
+B*6\->D:C*6\->E
+\Mat M[B,C]<0\=>\Text D,E,\Mat M[B,C]+10
+\Mat M[B,C]=\(-)10\=>\Text D,E," "
+\Mat M[B,C]>9\=>\Orange \Text D,E,"P"
+\Mat M[B,C]>9\=>\Green \PxlOn D+1,E+1
+\If \Mat M[B,C]\>=0\ And M[B,C]\<=9
+\Then \PxlOn D+2,E+1
+\IfEnd
+\Next 
+\Next 
+\Green \Text 3,68,"MIJNENVEGER!"
+68\->Q
+\Prog "MINESWEP"
+\Stop
+
+%End

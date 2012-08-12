@@ -1,0 +1,36 @@
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:252
+File Name:MS MIJN
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+\Text D,E," "
+\Orange \Text D,E,"*"
+0\->M~O
+\For 1\->A \To W
+\For 1\->B \To V
+A*6\->C:B*6\->D
+\If \Mat M[A,B]=9
+\Then \Text C,D," ":\Orange \Text C,D,"*":M+1\->M
+\IfEnd
+\If \Mat M[A,B]=19
+\Then \Green \Text C,D," ":\Green \Text C,D,"*":N+1\->N
+\IfEnd
+\If \Mat M[A,B]>9\ And \Mat M[A,B]<19
+\Then \Green \Text C,D," ":\Orange \Text C,D,"P":O+1\->O
+\IfEnd
+\Next 
+\Next 
+M+N\->M
+P+1\->P
+6248\->Q
+\Prog "MS END"
+
+%End

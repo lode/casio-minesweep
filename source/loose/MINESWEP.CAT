@@ -1,0 +1,211 @@
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:2471
+File Name:MINESWEP
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+Q=86\=>\Goto0
+\If Q=68
+\Then \Green \Text 3,68,"MIJNENVEGER!":0\->Q:\GotoC
+\IfEnd
+0\->A~Z
+9\->V:9\->W:10\->\r:1\->\theta
+\Prog "MS MENU"
+\Text 11,60,"            "
+\Text 19,60,"             "
+\Orange \Text 19,60," "
+\Text 25,60,"               "
+\Text 31,60,"                "
+\Orange \Text 31,60,"  "
+\Text 37,60,"        "
+\Text 43,60,"               "
+\Orange \Text 43,60," "
+\Text 49,60,"               "
+\Text 57,60,"         "
+\Orange \Text 57,60," "
+\Orange \Text 57,111,"    "
+\Text 11,60,"EVEN WACHTEN"
+\Text 19,60,"NOG"
+\Text 19,77,\r
+\r>9\=>\Text 19,89,"MIJNEN"
+\r>9\=>\Goto9
+\If \r<10\ And \r>1
+\Then \Text 19,85,"MIJNEN ":\Goto9
+\IfEnd
+\r=1\=>\Text 19,85,"MIJN   "
+\Lbl 9
+\Text 25,60,"NEER TE LEGGEN"
+{W,V}\->\Dim \Mat M
+0\->Z
+\Lbl A
+\If \r-Z\<>9\ And \r-Z\<>1
+\Then \Text 19,77,\r-Z
+\IfEnd
+\r-Z=9\=>\Text 19,77,"9 MIJNEN "
+\r-Z=1\=>\Text 19,77,"1 MIJN   "
+Z+1\->Z
+Z>\r\=>\GotoB
+\Intg (W\Ran#+1)\->A
+\Intg (V\Ran#+1)\->B
+\If \Mat M[A,B]=9
+\Then Z-1\->Z:\GotoA
+\IfEnd
+9\->\Mat M[A,B]
+A-1\->C:B\->D
+\Prog "MS CHECK"
+E=5\=>\Goto1
+\Mat M[C,D]\<>9\=>\Mat M[C,D]+1\->\Mat M[C,D]
+\Lbl 1
+A-1\->C:B+1\->D
+\Prog "MS CHECK"
+E=5\=>\Goto2
+\Mat M[C,D]\<>9\=>\Mat M[C,D]+1\->\Mat M[C,D]
+\Lbl 2
+A\->C:B+1\->D
+\Prog "MS CHECK"
+E=5\=>\Goto3
+\Mat M[C,D]\<>9\=>\Mat M[C,D]+1\->\Mat M[C,D]
+\Lbl 3
+A+1\->C:B+1\->D
+\Prog "MS CHECK"
+E=5\=>\Goto4
+\Mat M[C,D]\<>9\=>\Mat M[C,D]+1\->\Mat M[C,D]
+\Lbl 4
+A+1\->C:B\->D
+\Prog "MS CHECK"
+E=5\=>\Goto5
+\Mat M[C,D]\<>9\=>\Mat M[C,D]+1\->\Mat M[C,D]
+\Lbl 5
+A+1\->C:B-1\->D
+\Prog "MS CHECK"
+E=5\=>\Goto6
+\Mat M[C,D]\<>9\=>\Mat M[C,D]+1\->\Mat M[C,D]
+\Lbl 6
+A\->C:B-1\->D
+\Prog "MS CHECK"
+E=5\=>\Goto7
+\Mat M[C,D]\<>9\=>\Mat M[C,D]+1\->\Mat M[C,D]
+\Lbl 7
+A-1\->C:B-1\->D
+\Prog "MS CHECK"
+E=5\=>\GotoA
+\Mat M[C,D]\<>9\=>\Mat M[C,D]+1\->\Mat M[C,D]
+\GotoA
+\Lbl B
+\Text 11,60,"             "
+\Text 19,60,"               "
+\Text 25,60,"               "
+V*6+4\->M
+W*6+6\->N
+\PxlOff 4,M
+\PxlOff N,4
+V=9\=>\PxlOff N,M
+W=9\=>\PxlOff N,M
+\Green \F-Line M,5,M,N-1
+\Green \F-Line M-1,N,5,N
+V*6+2\->M
+W*6+2\->N
+\For 8\->A \To N \Step 6
+\For 7\->B \To M \Step 6
+\PxlOn A,B
+\Next 
+\Next 
+\Lbl 0
+0\->Q:\r\->T
+\Text 11,60,"X\(-)COORDINAAT:"
+\Text 17,60,"Y\(-)COORDINAAT:"
+\Orange \Text 23,60,"DEL"
+\Text 23,76,"RESET X+Y"
+\Orange \Text 31,60,"F1"
+\Text 31,72,"OPENLEGGEN"
+\Orange \Text 37,60,"F2"
+\Text 37,72,"VLAG PLAATSEN"
+\Orange \Text 43,60,"F3"
+\Text 43,72,"LINKS+RECHTS"
+\Text 51,60,"BEURTEN:"
+\Text 51,94,P
+\Text 57,60,"VLAGGEN"
+\Text 57,90,":"
+\r\->S
+\For 1\->A \To W
+\For 1\->B \To V
+\Mat M[A,B]>9\=>S-1\->S
+\Next 
+\Next 
+S<0\=>\Goto8
+S>9\=>\Goto8
+\Text 57,98," "
+\Lbl 8
+\Text 57,94,S
+\Orange \Text 57,111,"EXIT"
+\Lbl C
+1434\->K
+0\->Z
+\Lbl D
+Z+1\->Z
+\Do
+K-1\->K
+\Getkey\->A
+\LpWhile A\<>72\ And A\<>62\ And A\<>52\ And A\<>73\ And A\<>63\ And A\<>53\ And A\<>74\ And A\<>64\ And A\<>54\ And A\<>68\ And A\<>58\ And A\<>25\ And A\<>47\ And K\<>0
+A=47\=>\GotoX
+K=0\=>\Prog "MS ENERG"
+K=86\=>\Goto0
+A=25\=>\Prog "MS SAVE"
+A=25\=>\GotoC
+A=72\=>1\->A
+A=62\=>2\->A
+A=52\=>3\->A
+A=73\=>4\->A
+A=63\=>5\->A
+A=53\=>6\->A
+A=74\=>7\->A
+A=64\=>8\->A
+A=54\=>9\->A
+A=68\=>\Prog "MS SCRT"
+A=58\=>\Prog "MS SCRT"
+A=58\=>\GotoC
+\If Z=1\ And A>V
+\Then \Text 11,113," ":\GotoC
+\IfEnd
+\If Z=2\ And A>W
+\Then \Text 17,113," ":\GotoC
+\IfEnd
+Z=1\=>A\->C
+Z=1\=>\Text 11,113,C
+Z=1\=>\GotoD
+A\->B
+\Text 17,113,B
+B*6\->D:C*6\->E
+\Do
+\Green \PxlChg D+2,4
+\Green \PxlChg 4,E+1
+\Getkey\->A
+\LpWhile A\<>44\ And A\<>79\ And A\<>69\ And A\<>59\ And A\<>49\ And A\<>39
+\Green \PxlOn D+2,4
+\Green \PxlOn 4,E+1
+\If A=44
+\Then \Text 11,113," ":\Text 17,113," ":\GotoC
+\IfEnd
+A=69\=>\Prog "MS VLAG"
+A=79\=>\Prog "MS OPEN1"
+A=59\=>\Prog "MS LIRE"
+A=49\=>\Prog "MS VRAAG"
+A=39\=>\Prog "MS VRAAG"
+\Text 51,94,P
+Q\<>0\=>\GotoZ
+\Text 11,113," "
+\Text 17,113," "
+\GotoC
+\Lbl X
+0\->Q
+\Cls:\ClrText:\Stop
+\Lbl Z
+
+%End

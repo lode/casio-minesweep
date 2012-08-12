@@ -1,0 +1,1167 @@
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:2014
+File Name:MINESWEP
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+0\->A~U:0\->X~Z
+9\->V:9\->W:10\->\r:1\->\theta
+\Prog "MS MENU"
+\Text 6,6,"AUB EVEN"
+\Text 12,6,"WACHTEN"
+\Text 19,6,"NOG"
+\Text 25,6,"MIJN(EN)"
+\Text 31,6,"NEER TE"
+\Text 37,6,"LEGGEN"
+{W,V}\->\Dim \Mat M
+0\->Z
+\Lbl A
+\r-Z<10\=>\Text 19,27," "
+\Text 19,23,\r-Z
+Z+1\->Z
+Z>\r\=>\GotoB
+\Intg (W\Ran#+1)\->A
+\Intg (V\Ran#+1)\->B
+\If \Mat M[A,B]=9
+\Then Z-1\->Z:\GotoA
+\IfEnd
+9\->\Mat M[A,B]
+A-1\->C:B\->D
+\Prog "MS CHECK"
+E=5\=>\Goto1
+\Mat M[C,D]\<>9\=>\Mat M[C,D]+1\->\Mat M[C,D]
+\Lbl 1
+A-1\->C:B+1\->D
+\Prog "MS CHECK"
+E=5\=>\Goto2
+\Mat M[C,D]\<>9\=>\Mat M[C,D]+1\->\Mat M[C,D]
+\Lbl 2
+A\->C:B+1\->D
+\Prog "MS CHECK"
+E=5\=>\Goto3
+\Mat M[C,D]\<>9\=>\Mat M[C,D]+1\->\Mat M[C,D]
+\Lbl 3
+A+1\->C:B+1\->D
+\Prog "MS CHECK"
+E=5\=>\Goto4
+\Mat M[C,D]\<>9\=>\Mat M[C,D]+1\->\Mat M[C,D]
+\Lbl 4
+A+1\->C:B\->D
+\Prog "MS CHECK"
+E=5\=>\Goto5
+\Mat M[C,D]\<>9\=>\Mat M[C,D]+1\->\Mat M[C,D]
+\Lbl 5
+A+1\->C:B-1\->D
+\Prog "MS CHECK"
+E=5\=>\Goto6
+\Mat M[C,D]\<>9\=>\Mat M[C,D]+1\->\Mat M[C,D]
+\Lbl 6
+A\->C:B-1\->D
+\Prog "MS CHECK"
+E=5\=>\Goto7
+\Mat M[C,D]\<>9\=>\Mat M[C,D]+1\->\Mat M[C,D]
+\Lbl 7
+A-1\->C:B-1\->D
+\Prog "MS CHECK"
+E=5\=>\GotoA
+\Mat M[C,D]\<>9\=>\Mat M[C,D]+1\->\Mat M[C,D]
+\GotoA
+\Lbl B
+\Text 6,6,"         "
+\Text 12,6,"        "
+\Text 19,6,"       "
+\Text 25,6,"         "
+\Text 31,6,"        "
+\Text 37,6,"       "
+\Text 11,60,"           "
+\Text 19,60,"             "
+\Orange \Text 19,60," "
+\Text 25,60,"               "
+\Orange \Text 25,60,"           "
+\Text 31,60,"               "
+\Orange \Text 31,60,"  "
+\Text 37,60,"         "
+\Orange \Text 37,60,"     "
+\Text 43,60,"               "
+\Orange \Text 43,60," "
+\Text 49,60,"                "
+\Orange \Text 49,60,"     "
+\Text 57,60,"       "
+\Orange \Text 57,60," "
+\Orange \Text 57,111,"    "
+V*6+4\->M
+W*6+6\->N
+\Green \F-Line M,5,M,N-1
+\Green \F-Line M-1,N,5,N
+V*6+2\->M
+W*6+2\->N
+\For 8\->A \To N \Step 6
+\For 7\->B \To M \Step 6
+\PxlOn A,B
+\Next 
+\Next 
+\Text 11,60,"X\(-)COORDINAAT:"
+\Text 17,60,"Y\(-)COORDINAAT:"
+\Orange \Text 23,60,"DEL"
+\Text 23,76,"RESET X+Y"
+\Orange \Text 30,60,"F1"
+\Text 30,72,"OPENLEGGEN"
+\Orange \Text 36,60,"F2"
+\Text 36,72,"VLAG PLAATSEN"
+\Orange \Text 42,60,"F3"
+\Text 42,72,"LINKS+RECHTS"
+\Orange \Text 49,60,"F5"
+\Text 49,72,"CHECKEN ..."
+\Orange \Text 57,60,"F6"
+\Text 57,72,"STOPPEN"
+\Lbl C
+0\->Z
+\Lbl D
+Z+1\->Z
+\Do
+\Getkey\->A
+\LpWhile A\<>72\ And A\<>62\ And A\<>52\ And A\<>73\ And A\<>63\ And A\<>53\ And A\<>74\ And A\<>64\ And A\<>54\ And A\<>39\ And A\<>29
+A=29\=>\GotoX
+A=72\=>1\->A
+A=62\=>2\->A
+A=52\=>3\->A
+A=73\=>4\->A
+A=63\=>5\->A
+A=53\=>6\->A
+A=74\=>7\->A
+A=64\=>8\->A
+A=54\=>9\->A
+A=39\=>\Prog "MS CHECK"
+Q=8426\=>\GotoZ
+Z=1\=>A\->C
+Z=1\=>\Text 11,113,C
+Z=1\=>\GotoD
+A\->B
+\Text 17,113,B
+B*6\->D:C*6\->E
+\Do
+\Getkey\->A
+\LpWhile A\<>44\ And A\<>79\ And A\<>69\ And A\<>59
+\If A=44
+\Then \Text 11,113," ":\Text 17,113," ":\GotoC
+\IfEnd
+A=79\=>\Prog "MS OPEN1"
+A=69\=>\Prog "MS VLAG"
+A=59\=>\Prog "MS LIRE"
+Q=6248\=>\GotoZ
+\Text 11,113," "
+\Text 17,113," "
+\Lbl E
+\GotoC
+\Lbl X
+\Cls:\ClrText:\Stop
+\Lbl Z
+
+%End
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:1655
+File Name:MS MENU
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+\Cls
+\Green \F-Line 2,1,126,1
+\Green \F-Line 127,2,127,62
+\Green \F-Line 126,63,2,63
+\Green \F-Line 1,62,1,2
+\Green \F-Line 5,4,57,4
+\Green \F-Line 58,5,58,59
+\Green \F-Line 57,60,5,60
+\Green \F-Line 4,59,4,5
+\Green \Text 3,68,"MIJNENVEGER!"
+\Green \F-Line 60,9,125,9
+\Text 11,60,"HOOFDMENU:"
+\Text 19,60,"VELD GROOTTE:"
+\Orange \Text 19,60,"V"
+\Text 25,60,"1\(-)9 BIJ 1\(-)9:"
+\Text 25,108,V
+\Text 25,112,"\(-)"
+\Text 25,116,W
+\Text 31,60,"MIJNEN AANTAL:"
+\Orange \Text 31,60,"M"
+\Text 37,60,"01\(-)"
+V*W-1\->U
+U<10\=>\Text 37,72,"0"
+U<10\=>\Text 37,76,U
+U>9\=>\Text 37,72,U
+\Text 37,80,":"
+\Text 37,84,\r
+\Text 43,60,"RINGEN AANTAL:"
+\Orange \Text 43,60,"R"
+\Text 49,60,"0,1,ALLES:"
+\theta=0\=>\Text 49,100,\theta
+\theta=1\=>\Text 49,100,\theta
+\theta=2\=>\Text 49,100,"ALLES"
+\Text 57,60,"SPELEN"
+\Orange \Text 57,60,"S"
+\Orange \Text 57,111,"EXIT"
+\Lbl A
+\Do
+\Getkey\->A
+\LpWhile A\<>62\ And A\<>74\ And A\<>53\ And A\<>43\ And A\<>47
+A=47\=>\GotoX
+A=43\=>\GotoZ
+A=62\=>\GotoB
+A=74\=>\GotoD
+A=53\=>\GotoH
+\Lbl B
+\Orange \Text 25,60,"1 9     1 9"
+0\->Z
+\Lbl C
+Z+1\->Z
+Z=1\=>\Text 25,108,"."
+Z=2\=>\Text 25,116,"."
+\Do
+\Getkey\->A
+\LpWhile A\<>72\ And A\<>62\ And A\<>52\ And A\<>73\ And A\<>63\ And A\<>53\ And A\<>74\ And A\<>64\ And A\<>54
+A=72\=>1\->A
+A=62\=>2\->A
+A=52\=>3\->A
+A=73\=>4\->A
+A=63\=>5\->A
+A=53\=>6\->A
+A=74\=>7\->A
+A=64\=>8\->A
+A=54\=>9\->A
+Z=1\=>A\->V
+Z=2\=>A\->W
+\Text 25,108,V
+\Text 25,116,W
+Z=1\=>\GotoC
+\If V=1\ And W=1
+\Then 0\->Z:\GotoC
+\IfEnd
+V*W-1\->U
+U<10\=>\Text 37,72,"0"
+U<10\=>\Text 37,76,U
+U>9\=>\Text 37,72,U
+\Text 37,80,":"
+U<\r\=>U\->\r
+\Text 37,84,\r
+\r<10\=>\Text 37,88," "
+\Orange \Text 25,60,"           "
+\GotoA
+\Lbl D
+\Orange \Text 37,60,"01"
+U<10\=>\Orange \Text 37,72,"0"
+U<10\=>\Orange \Text 37,76,U
+U>9\=>\Orange \Text 37,72,U
+0\->Z
+\Text 37,84,"  "
+\Lbl E
+Z+1\->Z
+\Do
+\Getkey\->A
+\LpWhile A\<>71\ And A\<>72\ And A\<>62\ And A\<>52\ And A\<>73\ And A\<>63\ And A\<>53\ And A\<>74\ And A\<>64\ And A\<>54
+A=71\=>0\->A
+A=72\=>1\->A
+A=62\=>2\->A
+A=52\=>3\->A
+A=73\=>4\->A
+A=63\=>5\->A
+A=53\=>6\->A
+A=74\=>7\->A
+A=64\=>8\->A
+A=54\=>9\->A
+U<10\=>\Text 37,84,A
+U<10\=>A\->D
+U<10\=>\GotoF
+Z=1\=>\Text 37,84,A
+Z=2\=>\Text 37,88,A
+Z=1\=>A\->B
+Z=2\=>A\->C
+Z=1\=>\GotoE
+B*10\->D
+D+C\->D
+\Lbl F
+D<1\=>\GotoG
+D>U\=>\GotoG
+D\->\r
+\Orange \Text 37,60,"     "
+\GotoA
+\Lbl G
+0\->D:0\->\r
+\GotoD
+\Lbl H
+\Orange \Text 49,60,"0 1 A"
+\Do
+\Getkey\->A
+\LpWhile A\<>71\ And A\<>72\ And A\<>76
+A=71\=>0\->A
+A=72\=>1\->A
+A=76\=>2\->A
+A\->\theta
+\theta\<>0\=>\Text 49,100,"     "
+\theta=0\=>\Text 49,100,\theta
+\theta=1\=>\Text 49,100,\theta
+\theta=2\=>\Text 49,100,"ALLES"
+\Orange \Text 49,60,"     "
+\GotoA
+\Lbl X
+\Cls:\ClrText:\Stop
+\Lbl Z
+
+%End
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:136
+File Name:MS OPEN0
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+D*6\->F:E*6\->G
+\Mat M[D,E]=9\=>\GotoX
+\Mat M[D,E]=0\=>\GotoA
+\Text F,G,\Mat M[D,E]
+\Mat M[D,E]-10\->\Mat M[D,E]
+\GotoZ
+\Lbl A
+\Text F,G," "
+\Mat M[D,E]-10\->\Mat M[D,E]
+\GotoZ
+\Lbl X
+\Prog "MS MIJN"
+\Lbl Z
+
+%End
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:945
+File Name:MS OPEN1
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+R\<>0\=>\Goto0
+\Mat M[B,C]<0\=>\GotoZ
+\Mat M[B,C]>9\=>\GotoZ
+\Mat M[B,C]=9\=>\GotoX
+\Mat M[B,C]=0\=>\GotoA
+\Text D,E,\Mat M[B,C]
+\Mat M[B,C]-10\->\Mat M[B,C]
+\GotoB
+\Lbl A
+\Text D,E," "
+\Mat M[B,C]-10\->\Mat M[B,C]
+\Lbl B
+\theta=0\=>\GotoZ
+\Mat M[B,C]\<>\(-)10\=>\GotoZ
+\Lbl 0
+B-1\->D:C\->E
+\Prog "MS CHECK"
+F=5\=>\Goto1
+\If \Mat M[D,E]\<=9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN2"
+\Lbl 1
+B-1\->D:C+1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto2
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN2"
+\Lbl 2
+B\->D:C+1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto3
+\If \Mat M[D,E]\<=9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN2"
+\Lbl 3
+B+1\->D:C+1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto4
+\If \Mat M[D,E]\<=9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN2"
+\Lbl 4
+B+1\->D:C\->E
+\Prog "MS CHECK"
+F=5\=>\Goto5
+\If \Mat M[D,E]\<=9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN2"
+\Lbl 5
+B+1\->D:C-1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto6
+\If \Mat M[D,E]\<=9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN2"
+\Lbl 6
+B\->D:C-1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto7
+\If \Mat M[D,E]\<=9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN2"
+\Lbl 7
+B-1\->D:C-1\->E
+\Prog "MS CHECK"
+F=5\=>\GotoZ
+\If \Mat M[D,E]\<=9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN2"
+\GotoZ
+\Lbl X
+\Prog "MS MIJN"
+\Lbl Z
+
+%End
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:818
+File Name:MS OPEN2
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+R\<>0\=>\GotoZ
+\theta=1\=>\GotoZ
+\Mat M[G,H]\<>\(-)10\=>\GotoZ
+G-1\->D:H\->E
+\Prog "MS CHECK"
+F=5\=>\Goto1
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN3"
+\Lbl 1
+G-1\->D:H+1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto2
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN3"
+\Lbl 2
+G\->D:H+1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto3
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN3"
+\Lbl 3
+G+1\->D:H+1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto4
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN3"
+\Lbl 4
+G+1\->D:H\->E
+\Prog "MS CHECK"
+F=5\=>\Goto5
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN3"
+\Lbl 5
+G+1\->D:H-1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto6
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN3"
+\Lbl 6
+G\->D:H-1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto7
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN3"
+\Lbl 7
+G-1\->D:H-1\->E
+\Prog "MS CHECK"
+F=5\=>\GotoZ
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN3"
+\GotoZ
+\Lbl X
+G\->D:H\->E
+\Prog "MS MIJN"
+\Lbl Z
+
+%End
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:796
+File Name:MS OPEN3
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+\Mat M[B,C]\<>\(-)10\=>\GotoZ
+B-1\->D:C\->E
+\Prog "MS CHECK"
+F=5\=>\Goto1
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN4"
+\Lbl 1
+B-1\->D:C+1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto2
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN4"
+\Lbl 2
+B\->D:C+1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto3
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN4"
+\Lbl 3
+B+1\->D:C+1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto4
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN4"
+\Lbl 4
+B+1\->D:C\->E
+\Prog "MS CHECK"
+F=5\=>\Goto5
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN4"
+\Lbl 5
+B+1\->D:C-1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto6
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN4"
+\Lbl 6
+B\->D:C-1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto7
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN4"
+\Lbl 7
+B-1\->D:C-1\->E
+\Prog "MS CHECK"
+F=5\=>\GotoZ
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN4"
+\GotoZ
+\Lbl X
+\Prog "MS MIJN"
+\Lbl Z
+
+%End
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:804
+File Name:MS OPEN4
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+\Mat M[B,C]\<>\(-)10\=>\GotoZ
+G-1\->D:H\->E
+\Prog "MS CHECK"
+F=5\=>\Goto1
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN5"
+\Lbl 1
+G-1\->D:H+1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto2
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN5"
+\Lbl 2
+G\->D:H+1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto3
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN5"
+\Lbl 3
+G+1\->D:H+1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto4
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN5"
+\Lbl 4
+G+1\->D:H\->E
+\Prog "MS CHECK"
+F=5\=>\Goto5
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN5"
+\Lbl 5
+G+1\->D:H-1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto6
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN5"
+\Lbl 6
+G\->D:H-1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto7
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN5"
+\Lbl 7
+G-1\->D:H-1\->E
+\Prog "MS CHECK"
+F=5\=>\GotoZ
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN5"
+\GotoZ
+\Lbl X
+G\->D:H\->E
+\Prog "MS MIJN"
+\Lbl Z
+
+%End
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:796
+File Name:MS OPEN5
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+\Mat M[B,C]\<>\(-)10\=>\GotoZ
+B-1\->D:C\->E
+\Prog "MS CHECK"
+F=5\=>\Goto1
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN6"
+\Lbl 1
+B-1\->D:C+1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto2
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN6"
+\Lbl 2
+B\->D:C+1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto3
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN6"
+\Lbl 3
+B+1\->D:C+1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto4
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN6"
+\Lbl 4
+B+1\->D:C\->E
+\Prog "MS CHECK"
+F=5\=>\Goto5
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN6"
+\Lbl 5
+B+1\->D:C-1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto6
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN6"
+\Lbl 6
+B\->D:C-1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto7
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN6"
+\Lbl 7
+B-1\->D:C-1\->E
+\Prog "MS CHECK"
+F=5\=>\GotoZ
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->G:E\->H
+\Prog "MS OPEN6"
+\GotoZ
+\Lbl X
+\Prog "MS MIJN"
+\Lbl Z
+
+%End
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:804
+File Name:MS OPEN6
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+\Mat M[B,C]\<>\(-)10\=>\GotoZ
+G-1\->D:H\->E
+\Prog "MS CHECK"
+F=5\=>\Goto1
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN7"
+\Lbl 1
+G-1\->D:H+1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto2
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN7"
+\Lbl 2
+G\->D:H+1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto3
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN7"
+\Lbl 3
+G+1\->D:H+1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto4
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN7"
+\Lbl 4
+G+1\->D:H\->E
+\Prog "MS CHECK"
+F=5\=>\Goto5
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN7"
+\Lbl 5
+G+1\->D:H-1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto6
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN7"
+\Lbl 6
+G\->D:H-1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto7
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN7"
+\Lbl 7
+G-1\->D:H-1\->E
+\Prog "MS CHECK"
+F=5\=>\GotoZ
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+D\->B:E\->C
+\Prog "MS OPEN7"
+\GotoZ
+\Lbl X
+G\->D:H\->E
+\Prog "MS MIJN"
+\Lbl Z
+
+%End
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:636
+File Name:MS OPEN7
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+\Mat M[B,C]\<>\(-)10\=>\GotoZ
+B-1\->D:C\->E
+\Prog "MS CHECK"
+F=5\=>\Goto1
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+\Lbl 1
+B-1\->D:C+1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto2
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+\Lbl 2
+B\->D:C+1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto3
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+\Lbl 3
+B+1\->D:C+1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto4
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+\Lbl 4
+B+1\->D:C\->E
+\Prog "MS CHECK"
+F=5\=>\Goto5
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+\Lbl 5
+B+1\->D:C-1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto6
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+\Lbl 6
+B\->D:C-1\->E
+\Prog "MS CHECK"
+F=5\=>\Goto7
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+\Lbl 7
+B-1\->D:C-1\->E
+\Prog "MS CHECK"
+F=5\=>\GotoZ
+\If \Mat M[D,E]<9\ And \Mat M[D,E]\>=0
+\Then \Prog "MS OPEN0"
+\IfEnd
+\GotoZ
+\Lbl X
+\Prog "MS MIJN"
+\Lbl Z
+
+%End
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:194
+File Name:MS CHECK
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+A=79\=>\GotoA
+A=59\=>\GotoA
+A=39\=>\GotoB
+0\->E
+C<1\=>5\->E
+C>W\=>5\->E
+D<1\=>5\->E
+D>V\=>5\->E
+\GotoZ
+\Lbl A
+0\->F
+D<1\=>5\->F
+D>W\=>5\->F
+E<1\=>5\->F
+E>V\=>5\->F
+\GotoZ
+\Lbl B
+0\->Q
+\For 1\->A \To W
+\For 1\->B \To V
+\Mat M[A,B]=9\=>6248\->Q
+Q=6248\=>\Prog "MS END"
+\Next 
+\Next 
+8426\->Q
+\Prog "MS END"
+\Lbl Z
+
+%End
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:129
+File Name:MS VLAG
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+\Mat M[B,C]<0\=>\GotoZ
+\Text D,E," "
+\Mat M[B,C]>9\=>\GotoA
+\Mat M[B,C]+10\->\Mat M[B,C]
+\Green \Text D,E,"P"
+\GotoZ
+\Lbl A
+\Mat M[B,C]-10\->\Mat M[B,C]
+\Green \Text D,E," "
+\PxlOn D+2,E+1
+\GotoZ
+\Lbl Z
+
+%End
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:65
+File Name:MS LIRE
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+\Mat M[B,C]<0\=>\GotoA
+\Mat M[B,C]>9\=>\GotoB
+\GotoZ
+\Lbl A
+1\->R
+\Prog "MS OPEN1"
+\GotoZ
+\Lbl B
+\GotoZ
+\Lbl Z
+
+%End
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:216
+File Name:MS MIJN
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+\Text D,E," "
+\Orange \Text D,E,"*"
+\For 1\->A \To W
+\For 1\->B \To V
+A*6\->C:B*6\->D
+\If \Mat M[A,B]=9
+\Then \Text C,D," ":\Orange \Text C,D,"*"
+\IfEnd
+\If \Mat M[A,B]=19
+\Then \Green \Text C,D," ":\Orange \Text C,D,"+"
+\IfEnd
+\If \Mat M[A,B]>9\ And \Mat M[A,B]<19
+\Then \Green \Text C,D," ":\Green \Text C,D,"*"
+\IfEnd
+\Next 
+\Next 
+6248\->Q
+\Prog "MS END"
+
+%End
+%Header Record
+Format:TXT
+Communication SW:0
+Data Type:PG
+Capacity:583
+File Name:MS END
+Group Name:
+Password:
+Option1:NL
+Option2:
+Option3:
+Option4:
+%Data Record
+\Text 11,60,"               "
+\Text 17,60,"               "
+\Orange \Text 23,60,"   "
+\Text 23,72,"          "
+\Orange \Text 30,60,"  "
+\Text 30,72,"           "
+\Orange \Text 36,60,"  "
+\Text 36,72,"              "
+\Orange \Text 42,60,"  "
+\Text 42,72,"             "
+\Orange \Text 49,60,"  "
+\Text 49,72,"            "
+\Orange \Text 57,60,"  "
+\Text 57,72,"        "
+Q=8426\=>\GotoA
+Q=6248\=>\GotoB
+\Lbl A
+\Green \Text 11,60,"GEFELICITEERD!"
+\Green \Text 19,60,"JE HEBT"
+\Green \Text 25,60," GEWONNEN!"
+\GotoZ
+\Lbl B
+\Green \Text 11,60,"JAMMER!"
+\Green \Text 19,60,"JE HEBT"
+\Green \Text 25,60," VERLOREN!"
+\Orange \Text 33,60,"*"
+\Text 33,64,": MIJN"
+\Orange \Text 39,60,"+"
+\Text 39,64,": MIJN + VLAG"
+\Green \Text 45,60,"*"
+\Text 45,64,": FOUTE VLAG"
+\Lbl Z
+\Green \Text 57,65,"(C) LODEC \(-) 2003"
+\Stop
+
+%End
